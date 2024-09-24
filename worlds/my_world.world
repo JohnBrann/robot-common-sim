@@ -1,29 +1,50 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-    <world name="simple_world">
-        <gravity>0 0 -9.81</gravity>
-        <model name="box">
-            <pose>0 0 0.5 0 0 0</pose>
-            <link name="link">
-                <collision name="collision">
-                    <geometry>
-                        <box>
-                            <size>1 1 1</size>
-                        </box>
-                    </geometry>
-                </collision>
-                <visual name="visual">
-                    <geometry>
-                        <box>
-                            <size>1 1 1</size>
-                        </box>
-                    </geometry>
-                    <material>
-                        <ambient>1 0 0 1</ambient>
-                        <diffuse>1 0 0 1</diffuse>
-                    </material>
-                </visual>
-            </link>
-        </model>
-    </world>
+  <world name="minimal_world">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+     <!-- <include>
+     <name>my_robot</name>
+     <pose>0 0 0.5 0 0 0</pose>
+     <uri>model://turtlebot3_burger</uri>
+   </include> -->
+   <model name="my_custom_object">
+     <pose>0 0 0 0 0 0</pose>
+     <link name="link">
+       <collision name="collision">
+         <geometry>
+           <box>
+             <size>1 1 1</size>
+           </box>
+         </geometry>
+       </collision>
+       <visual name="visual">
+         <geometry>
+           <box>
+             <size>1 1 1</size>
+           </box>
+         </geometry>
+         <material>
+           <script>
+             <name>Gazebo/Blue</name>
+             <uri>file://media/materials/scripts/gazebo.material</uri>
+           </script>
+         </material>
+       </visual>
+     </link>
+   </model>
+   <!-- Configure the camera -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0.693727 -10.648851 15.776229 0 0.915999 1.57</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
 </sdf>
+
