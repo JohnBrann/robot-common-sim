@@ -10,7 +10,7 @@
     </include>
      <include>
      <name>my_robot</name>
-     <pose>0 0 0 0 0 0</pose>
+     <pose>-1.75 -1.75 0 0 0 0</pose>
      <uri>model://turtlebot3_burger</uri>
    </include>
 
@@ -121,22 +121,22 @@
    <!-- Obstacles -->
 
 
-
+    <!-- Center Block -->
    <model name="center_block">
    <static>true</static>
-     <pose>-0.75 -0.75 0 0 0 0</pose>
+     <pose>0 0 0 0 0 0</pose>
      <link name="center_block">
        <collision name="collision">
          <geometry>
            <box>
-             <size>0.5 0.5 0.5</size>
+             <size> 0.75 0.75 0.5</size>
            </box>
          </geometry>
        </collision>
        <visual name="visual">
          <geometry>
            <box>
-             <size>0.5 0.5 0.5</size>
+             <size>0.75 0.75 0.5</size>
            </box>
          </geometry>
          <material>
@@ -148,11 +148,68 @@
    </model>
 
 
-   <!-- Left L-->
-   <model name="left_long_side">
+   <!-- Bottom Cylinder-->
+   <model name="bottom_cylinder">
    <static>true</static>
-     <pose>-0.95 0 0 0 0 0</pose>
-     <link name="left_long_side">
+     <pose>0 -1 0 0 0 0</pose>
+     <link name="bottom_cylinder">
+       <collision name="collision">
+         <geometry>
+            <cylinder>
+                <radius>0.25</radius>  
+                <length>0.5</length> 
+            </cylinder>
+         </geometry>
+       </collision>
+       <visual name="visual">
+         <geometry>
+           <cylinder>
+                <radius>0.25</radius>  
+                <length>0.5</length> 
+            </cylinder>
+         </geometry>
+         <material>
+           <ambient>0.3 0.3 0.3 0.5</ambient>
+           <diffuse>0.3 0.3 0.3 0.8</diffuse>
+         </material>
+       </visual>
+     </link>
+   </model>
+
+   <!-- Top Cylinder-->
+   <model name="top_cylinder">
+   <static>true</static>
+     <pose>0 1 0 0 0 0</pose>
+     <link name="top_cylinder">
+       <collision name="collision">
+         <geometry>
+            <cylinder>
+                <radius>0.25</radius>  
+                <length>0.5</length> 
+            </cylinder>
+         </geometry>
+       </collision>
+       <visual name="visual">
+         <geometry>
+           <cylinder>
+                <radius>0.25</radius>  
+                <length>0.5</length> 
+            </cylinder>
+         </geometry>
+         <material>
+           <ambient>0.3 0.3 0.3 0.5</ambient>
+           <diffuse>0.3 0.3 0.3 0.8</diffuse>
+         </material>
+       </visual>
+     </link>
+   </model>
+
+
+   <!-- Bottom Left Divider-->
+   <model name="bottom_left_divider">
+   <static>true</static>
+     <pose>-1.25 -1 0 0 0 0</pose>
+     <link name="bottom_left_divider">
        <collision name="collision">
          <geometry>
            <box>
@@ -174,36 +231,12 @@
      </link>
    </model>
 
-   <model name="left_short_side">
-   <static>true</static>
-     <pose>-0.45 -0.95 0 0 0 0</pose>
-     <link name="left_short_side">
-       <collision name="collision">
-         <geometry>
-           <box>
-             <size>0.9 0.1 0.5</size>
-           </box>
-         </geometry>
-       </collision>
-       <visual name="visual">
-         <geometry>
-           <box>
-             <size>0.9 0.1 0.5</size>
-           </box>
-         </geometry>
-         <material>
-           <ambient>0.3 0.3 0.3 0.5</ambient>
-           <diffuse>0.3 0.3 0.3 0.8</diffuse>
-         </material>
-       </visual>
-     </link>
-   </model>
 
-    <!-- Right L-->
-   <model name="right_long_side">
+    <!-- Top Right Divider-->
+   <model name="top_right_divider">
    <static>true</static>
-     <pose>0.95 0 0 0 0 0</pose>
-     <link name="left_long_side">
+     <pose>1.25 1 0 0 0 0</pose>
+     <link name="top_right_divider">
        <collision name="collision">
          <geometry>
            <box>
@@ -225,30 +258,88 @@
      </link>
    </model>
 
-   <model name="right_short_side">
-   <static>true</static>
-     <pose>0.45 0.95 0 0 0 0</pose>
-     <link name="right_short_side">
-       <collision name="collision">
-         <geometry>
-           <box>
-             <size>0.9 0.1 0.5</size>
-           </box>
-         </geometry>
-       </collision>
-       <visual name="visual">
-         <geometry>
-           <box>
-             <size>0.9 0.1 0.5</size>
-           </box>
-         </geometry>
-         <material>
-           <ambient>0.3 0.3 0.3 0.5</ambient>
-           <diffuse>0.3 0.3 0.3 0.8</diffuse>
-         </material>
-       </visual>
-     </link>
-   </model>
+    <!-- Left Triangle -->
+
+    <model name="triangle_walls">
+    <static>true</static>
+    
+    <!-- Wall 1 -->
+        <link name="wall_1">
+            <pose>-1.15 1.0 0 0 0 0</pose> <!-- Center the wall -->
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.1 0.5</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.1 0.5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.3 0.3 0.3 0.5</ambient>
+                    <diffuse>0.3 0.3 0.3 0.8</diffuse>
+                </material>
+            </visual>
+        </link>
+
+        <!-- Wall 2 -->
+        <link name="wall_2">
+            <pose>-1 0.9 0 0 0 1.0472</pose> <!-- Adjusted angle to 60 degrees -->
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.1 0.5</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.1 0.5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.3 0.3 0.3 0.5</ambient>
+                    <diffuse>0.3 0.3 0.3 0.8</diffuse>
+                </material>
+            </visual>
+        </link>
+
+        <!-- Wall 3 -->
+        <link name="wall_3">
+            <pose>-1.25 0.9 0 0 0 -1.0472</pose> <!-- Adjusted angle to -60 degrees -->
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.4 0.1 0.5</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.4 0.1 0.5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.3 0.3 0.3 0.5</ambient>
+                    <diffuse>0.3 0.3 0.3 0.8</diffuse>
+                </material>
+            </visual>
+        </link>
+    </model>
+
+
+    <!-- Right Triangle -->
+
+
+
+
+
 
    
    <!-- Configure the camera -->
