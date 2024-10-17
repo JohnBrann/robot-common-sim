@@ -1,29 +1,39 @@
-from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess
-from launch.substitutions import LaunchConfiguration
+import os
 from ament_index_python.packages import get_package_share_directory
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
-    # Declare a launch argument for the world file
-    world_arg = DeclareLaunchArgument(
-        'world_name',
-        default_value='base_world.world',
-        description='Specify the world file to load in Gazebo'
+    # Get paths to packages and files
+    gazebo_worlds_dir = get_package_share_directory('gazebo_worlds')
+    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
+
+    # World file path
+    world_path = os.path.join(gazebo_worlds_dir, 'worlds', 'world1.world')
+
+    # Launch configurations
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
+
+    # Gazebo server
+    gzserver_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
+        ),
+        launch_arguments={'world': world_path}.items()
     )
 
-    # Directory for world files
-    worlds_dir = get_package_share_directory('gazebo_worlds') + '/worlds/'
-
-    # Execute Gazebo with the dynamically specified world file
-    gazebo_command = ExecuteProcess(
-        cmd=['gazebo', '--verbose', LaunchConfiguration('world_name')],
-        cwd=[worlds_dir],
-        output='screen'
+    # Gazebo client
+    gzclient_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
+        )
     )
 
-    return LaunchDescription([
-        # Declare the argument for the world
-        world_arg,
-        # Launch Gazebo with the specified world
-        gazebo_command,
-    ])
+    # Create the launch description and add actions
+    ld = LaunchDescription()
+    ld.add_action(gzserver_cmd)
+    ld.add_action(gzclient_cmd)
+
+    return ld
