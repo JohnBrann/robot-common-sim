@@ -14,7 +14,7 @@ def generate_launch_description():
     # Declare launch argument for the world name
     world_arg = DeclareLaunchArgument(
         'world_name',
-        default_value=os.path.join(robot_common_sim_dir, 'worlds', '4x4m_empty.world'),
+        default_value=os.path.join(robot_common_sim_dir, 'worlds', '4x4m_four_boxes.world'),
         description='Specify the world file to load in Gazebo'
     )
 
@@ -29,7 +29,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
         ),
-        launch_arguments={'world': world_path}.items()
+        launch_arguments={'world': world_path, 'use_sim_time': use_sim_time}.items() 
     )
 
     # Gazebo client
@@ -41,7 +41,7 @@ def generate_launch_description():
 
     # Create the launch description and add actions
     ld = LaunchDescription()
-    ld.add_action(world_arg)  # Add the world argument
+    ld.add_action(world_arg) 
     ld.add_action(gzserver_cmd)
     ld.add_action(gzclient_cmd)
 
