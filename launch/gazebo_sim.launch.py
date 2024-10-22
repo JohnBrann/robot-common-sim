@@ -14,7 +14,7 @@ def generate_launch_description():
     # Declare launch argument for the world name
     world_arg = DeclareLaunchArgument(
         'world_name',
-        default_value=os.path.join(robot_common_sim_dir, 'worlds', 'world4.world'),
+        default_value=os.path.join(robot_common_sim_dir, 'worlds', '4x4m_empty.world'),
         description='Specify the world file to load in Gazebo'
     )
 
