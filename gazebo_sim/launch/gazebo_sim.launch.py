@@ -8,7 +8,7 @@ from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
     # Get paths to packages and files
-    pkg_robot_common_sim = get_package_share_directory('robot-common-sim')
+    pkg_gazebo_sim = get_package_share_directory('gazebo_sim')
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 
     # Declare the launch argument for the world name
@@ -18,7 +18,7 @@ def generate_launch_description():
     )
 
     # Path to the worlds directory
-    world_dir = os.path.join(pkg_robot_common_sim, 'worlds')
+    world_dir = os.path.join(pkg_gazebo_sim, 'worlds')
 
     # Gazebo server
     gzserver_cmd = IncludeLaunchDescription(

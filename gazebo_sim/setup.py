@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 import glob
 
-package_name = 'robot-common-sim'
+package_name = 'gazebo_sim'
 
 setup(
     name=package_name,
