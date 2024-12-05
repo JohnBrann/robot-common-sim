@@ -1,9 +1,0 @@
-# Ignore build and install directories
-build/
-install/
-log/
-
-# Ignore Python cache files
-__pycache__/
-*.pyc
-*.pyo
