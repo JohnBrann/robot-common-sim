@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', glob.glob('launch/*.launch.py')),
         ('share/' + package_name + '/worlds', glob.glob('worlds/*.world')), 
+        ('share/' + package_name + '/models/waypoint_marker', glob.glob('models/waypoint_marker/*.sdf')), 
     ],
     install_requires=['setuptools'],
     zip_safe=True,

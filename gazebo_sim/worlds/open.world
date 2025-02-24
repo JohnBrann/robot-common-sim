@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="minimal_world">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+   <!-- Configure the camera -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0.0 -4.225 6 0 1 1.57</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>
